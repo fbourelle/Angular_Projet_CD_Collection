@@ -1,0 +1,31 @@
+<article class="listeCd">
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Année de naissance</th>
+      <th scope="col">Statut</th>
+      <th scope="col">Albums</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let artiste of this.musique._tab_artistes">
+      <th scope="row">
+        {{ artiste._nom}}</th>
+      <td><time [appYeardatetime]="artiste._age">{{ artiste._age }}</time></td>
+      <td *ngIf="artiste._alive === true">Vivant</td>
+      <td *ngIf="artiste._alive === false">Mort</td>
+      <td>
+        <ul class="list-group">
+          <ng-container class="list-group-item" *ngFor="let cd of this.musique._tab_cds" >
+            <ng-container *ngIf="cd._artiste._nom == artiste._nom">
+              <li class="list-group-item">{{ cd._album }}</li>
+            </ng-container>
+          </ng-container>
+        </ul>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</article>

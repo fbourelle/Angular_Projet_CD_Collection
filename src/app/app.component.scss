@@ -1,0 +1,72 @@
+header {
+  padding-top: 0.2em;
+  min-height: 50px;
+  background-color: #222;
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+small {
+  color: gray;
+  font-family: 'Montserrat', sans-serif;
+}
+
+footer {
+  text-align: center;
+}
+
+li a {
+  color: white;
+  border-bottom: 3px solid #222;
+  cursor: pointer;
+}
+
+li a:hover{
+  border-bottom: 3px solid darkturquoise;
+}
+
+h1 {
+  font-family: 'Monoton', cursive;
+  color: white;
+  font-size: 4em;
+  margin-top: 0;
+  text-transform: uppercase;
+}
+
+.nav-link {
+  color: #FFF !important;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+i {
+  margin-right: 0.4em;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  float: left;
+
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}

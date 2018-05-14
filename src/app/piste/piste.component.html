@@ -1,0 +1,6 @@
+<tr>
+  <td>{{ piste._id }}</td>
+  <td>{{ piste._titre }}</td>
+  <td *ngIf="onAfficheSecondes( piste._duree) < 10">{{ onAfficheMinutes( piste._duree) }}:0{{ onAfficheSecondes( piste._duree) }}</td>
+  <td *ngIf="onAfficheSecondes( piste._duree) > 9">{{ onAfficheMinutes( piste._duree) }}:{{ onAfficheSecondes( piste._duree) }}</td>
+</tr>

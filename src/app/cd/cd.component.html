@@ -1,0 +1,54 @@
+<article class="listeCd">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Album</th>
+        <th scope="col">Artiste</th>
+        <th scope="col">Pistes</th>
+        <th scope="col">Durée Totale</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let cd of this.musique._tab_cds">
+      <th scope="row">{{ cd._id }}</th>
+      <td><img src='{{ cd._image }}' alt='{{ cd._album }}' width="100" height="100">
+        {{ cd._album }}</td>
+      <td>{{ cd._artiste._nom }}</td>
+      <td>
+        <table class="table">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Titre</th>
+              <th scope="col">Durée</th>
+            </tr>
+            <tr *ngFor="let piste of cd._tab_pistes">
+              <th scope="row">{{ piste._id }}</th>
+              <td>{{ piste._titre }}</td>
+              <td *ngIf="onAfficheSecondes( piste._duree) < 10">
+                <time [appTracksdatetime]="piste._duree">
+                  {{ onAfficheMinutes( piste._duree) }}:0{{ onAfficheSecondes( piste._duree) }}
+                </time>
+              </td>
+              <td *ngIf="onAfficheSecondes( piste._duree) > 9">
+                <time [appTracksdatetime]="piste._duree" >
+                  {{ onAfficheMinutes( piste._duree) }}:{{ onAfficheSecondes( piste._duree) }}
+                </time>
+              </td>
+            </tr>
+        </table>
+      </td>
+      <td *ngIf="onAfficheSecondes(cd._duree_totale) < 10">
+        <time [appTracksdatetime]="cd._duree_totale">
+          {{ onAfficheMinutes(cd._duree_totale) }}:0{{ onAfficheSecondes(cd._duree_totale) }}
+        </time>
+      </td>
+      <td *ngIf="onAfficheSecondes(cd._duree_totale) > 9">
+        <time [appTracksdatetime]="cd._duree_totale">
+          {{ onAfficheMinutes(cd._duree_totale) }}:{{ onAfficheSecondes(cd._duree_totale) }}
+        </time>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</article>

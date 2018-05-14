@@ -1,0 +1,133 @@
+<article class="row">
+  <div class="col-12">
+    <div class="alert alert-danger" *ngIf="messageAlert2._message == 'erreur_artiste'">Erreur dans les informations sur l'artiste</div>
+    <div class="alert alert-success" *ngIf="messageAlert2._message == 'succes_artiste'">Artiste ajouté</div>
+    <div class="alert alert-danger" *ngIf="messageAlert2._message == 'erreur_cd'">Erreur dans les informations sur l'album</div>
+    <div class="alert alert-success" *ngIf="messageAlert2._message == 'succes_cd'">Album ajouté</div>
+    <div class="alert alert-danger" *ngIf="messageAlert2._message == 'erreur_titre'">Erreur dans les informations sur le titre</div>
+    <div class="alert alert-success" *ngIf="messageAlert2._message == 'succes_titre'">Titre ajouté</div>
+  </div>
+
+  <section id="addArtist" class="col-md-4 col-sm-12">
+    <h4>Ajouter un artiste</h4>
+    <hr>
+    <form (ngSubmit)="onAjouterArtiste(f)" #f='ngForm'>
+      <div class="form-group">
+        <label for="nom">Nom :</label>
+        <input type="text" class="form-control" name="nom" ngModel placeholder="Artiste" required>
+      </div>
+      <div class="form-group">
+        <label for="age">Année de naissance :</label>
+        <select name="year" class="form-control" name="age" ngModel required>
+          <option value="">-- Choisir une année --</option>
+          <option
+            *ngFor="let year of this.years"
+            value="{{ year }}"
+          >
+            {{ year }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="status">Statut</label>
+        <select name="status" class="form-control" ngModel required>
+          <option value="">-- Choisir un statut --</option>
+          <option value="true">Vivant</option>
+          <option value="false">Mort</option>
+        </select>
+      </div>
+      <button type="submit"
+              title="Ajouter"
+              class="btn btn-dark btn-sm">Ajouter
+      </button>
+    </form>
+  </section>
+
+  <section id="addAlbum" class="col-md-4 col-sm-12">
+    <h4>Ajouter un album</h4>
+    <hr>
+    <form (ngSubmit)="onAjouterAlbum(g)" #g='ngForm'>
+      <div class="form-group">
+        <label for="artiste">Artiste</label>
+        <select name="artiste" class="form-control" ngModel required>
+          <option value="">-- Choisir un artiste --</option>
+          <option
+            *ngFor="let artiste of this.musique._tab_artistes"
+            value="{{artiste._nom}}"
+          >
+            {{artiste._nom}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="nomalbum">Titre :</label>
+        <input type="text" class="form-control" name="nomalbum" ngModel placeholder="Titre de l'album" required>
+      </div>
+      <div class="form-group">
+        <label for="image">Photo : </label>
+        <input type="text" class="form-control" name="image" ngModel placeholder="Lien vers l'image">
+      </div>
+      <button type="submit"
+              title="Ajouter"
+              class="btn btn-dark btn-sm">Ajouter
+      </button>
+    </form>
+  </section>
+
+  <section id="addTracks" class="col-md-4 col-sm-12">
+    <h4>Ajouter un titre</h4>
+    <hr>
+    <form>
+      <div class="form-group" >
+        <label for="album">Album :</label>
+        <select name="album" class="form-control" [(ngModel)]="albumSelect" (change)="onChoisirAlbum()" >
+          <option
+            *ngFor="let album of this.musique._tab_cds"
+            value="{{album._id}}"
+          >
+            {{album._album}}, {{ album._artiste._nom}}</option>
+        </select>
+      </div>
+      <!--<button class="btn btn-success btn-sm" (click)="onChoisirAlbum()">Choisir</button>-->
+
+      <div *ngIf="bool_id == false">
+        <form (ngSubmit)="onAjouterTitre(g)" #g='ngForm'>
+          <div class="form-group">
+            <label for="titre">Titre :</label>
+            <input type="text" class="form-control" name="titre" ngModel placeholder="Titre du morceau" required>
+          </div>
+          <div class="form-group">
+            <label for="duree">Durée : </label>
+            <input type="time" class="form-control" name="duree" ngModel required>
+          </div>
+          <button type="submit"
+                  title="Ajouter"
+                  class="btn btn-dark btn-sm">Ajouter
+          </button>
+        </form>
+        <br>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" colspan="3">{{ this.musique._tab_cds[id_album]._album }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let piste of this.musique._tab_cds[id_album]._tab_pistes">
+                <td>{{ piste._id }}</td>
+                <td>{{ piste._titre }}</td>
+                <td *ngIf="onAfficheSecondes( piste._duree) < 10">
+                  <time [appTracksdatetime]="piste._duree">
+                    {{ onAfficheMinutes( piste._duree) }}:0{{ onAfficheSecondes( piste._duree) }}
+                  </time>
+                </td>
+                <td *ngIf="onAfficheSecondes( piste._duree) > 9">
+                  <time [appTracksdatetime]="piste._duree" >
+                    {{ onAfficheMinutes( piste._duree) }}:{{ onAfficheSecondes( piste._duree) }}
+                  </time>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </form>
+  </section>
+</article>
