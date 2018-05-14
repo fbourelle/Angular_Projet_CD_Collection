@@ -1,3 +1,20 @@
+# Descriptif du projet :
+
+L'objectif principal du projet est de connecter Angular à une base de données externe hébergée sur Firebase.
+- Le lien "Télécharger la collection", importe les données dans le projet
+- Le lien "Remplacer la collection", enregistre les données en les écrasant dans la base de données externe
+
+Autres prétextes du projet :
+- Utilisation des routes (3 routes : affiches les CD, les artistes et 1 page de création de données)
+- Création de directives structurelles, notamment pour ajouter des attributs 'datetime' aux balises <Time>
+- Utilisation de <ng-container> pour afficher des données selon plusieurs directives structurelles
+  
+Axes d'amélioration :
+- Donner la possibilité de modifier les données et de les supprimer
+- Mises à jour des input suite à l'envoi des données
+- Meilleure gestion des alertes
+- Téléchargement d'images dans le formulaire
+
 # ProjetCd
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
